@@ -1,0 +1,21 @@
+{
+  "name": "babe.spidy",
+  "version": "1.0.0",
+  "description": "counting your relationship from the beginning to the infinity. with a dedicated video for the love story.",
+  "main": "noise.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spidycoder-AS/RelationshipCounterInfinity.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Spidycoder-AS/RelationshipCounterInfinity/issues"
+  },
+  "homepage": "https://github.com/Spidycoder-AS/RelationshipCounterInfinity#readme"
+}
