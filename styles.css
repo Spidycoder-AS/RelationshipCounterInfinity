@@ -183,7 +183,7 @@ footer a {
   }
   .heart-gif {
     width: 100%;
-    margin-top: -25px; /* Adjust the margin to crop from the upper side */
+    margin-top: -35px; /* Adjust the margin to crop from the upper side */
   }
   .heart-content {
     font-size: 16px;
