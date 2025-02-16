@@ -17,10 +17,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  justify-content: flex-start;
+  height: auto;
+  min-height: 100vh;
   margin: 0;
-  overflow: hidden; /* Make the page non-scrollable */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
   user-select: none; /* Prevent text selection */
   -webkit-user-select: none; /* Safari support */
 }
@@ -33,7 +35,7 @@ h1 {
 .title {
   text-shadow: black 0px 0px 10px;
   font-size: 2rem;
-  margin-bottom: 2px;
+  margin-bottom: 10px;
   color: #ff4c6a;
 }
 
@@ -47,29 +49,30 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-shadow: black 0px 0px 10px;
-  overflow: hidden; /* Hide the overflow to crop the GIF */
-  height: 200px; /* Adjust the height as needed */
-  margin-bottom: 20px; /* Add margin to create space between heart and tulip */
+  overflow: hidden; /* Hide overflow */
+  height: auto;
+  margin-bottom: 60px; /* More spacing for scrollable effect */
 }
 
 /* Heart GIF */
 .heart-gif {
   width: 400px;
   height: auto;
-  margin-top: -50px; /* Adjust the margin to crop from the upper side */
 }
 
 /* Counter Inside Heart */
 .heart-content {
   position: absolute;
-  top: 46%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Copperplate, Papyrus, fantasy";
-  font-size: 20px;
+  font-size: 22px;
   color: rgb(246, 5, 5);
   text-align: center;
+  text-shadow: 2px 2px 5px black;
 }
 
 /* Video Player Styling */
@@ -77,12 +80,12 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px; /* Space between the video player and the title */
+  margin-bottom: 40px;
 }
 
 .video-container iframe {
   width: 100%;
-  max-width: 560px; /* Adjust the size as needed */
+  max-width: 560px;
   height: auto;
 }
 
@@ -98,8 +101,8 @@ h1 {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #f96f86; /* Button background color */
-  color: white; /* Button text color */
+  background-color: #f96f86;
+  color: white;
   border: none;
   border-radius: 5px;
   margin: 0 10px;
@@ -107,35 +110,44 @@ h1 {
 }
 
 .video-button:hover {
-  background-color: #ff4c6a; /* Button hover color */
+  background-color: #ff4c6a;
 }
 
-/* Tulip Image Styling */
+/* Tulip Image Styling (Fixed Below Heart GIF) */
 .tulip-container {
-  position: absolute;
-  bottom: 40px; /* Adjust the bottom position to fit above the footer */
+  position: fixed;
+  top: calc(50% + 220px); /* Adjusted to stay below the heart */
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   display: flex;
   justify-content: center;
-  z-index: 0; /* Ensure the tulip image is below the footer */
+}
+
+/* Adjustments for Small Screens */
+@media (max-width: 500px) {
+  .tulip-container {
+    top: calc(35% + 180px); /* Adjusted for smaller screens */
+  }
 }
 
 .tulip-image {
-  width: 450px; /* Adjust the size as needed */
+  width: 450px;
   height: auto;
 }
 
-/* Footer Styling */
+
+/* Footer Styling (Fixed at Bottom) */
 footer {
   width: 100%;
   text-align: center;
   background-color: transparent;
-  color: #e6e6fa; /* Correct lavender pink color */
+  color: #e6e6fa;
   padding: 10px 0;
-  position: absolute;
-  bottom: -0.5em; /* Adjust the bottom position to remove gap */
+  position: fixed;
+  bottom: 0;
   left: 0;
-  z-index: 1; /* Ensure the footer is above the tulip image */
+  z-index: 1; /* Above the tulip */
 }
 
 footer p {
@@ -144,11 +156,11 @@ footer p {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: #e6e6fa; /* Correct lavender pink color */
+  color: #e6e6fa;
 }
 
 footer a {
-  color: #e6e6fa; /* Correct lavender pink color */
+  color: #e6e6fa;
   text-decoration: none;
 }
 
@@ -167,9 +179,9 @@ footer a {
 }
 
 .footer-logo {
-  width: 40px; /* Adjust the size as needed */
+  width: 40px;
   height: auto;
-  margin-right: 10px; /* Space between the logo and the text */
+  margin-right: 10px;
 }
 
 /* Responsive Fix */
@@ -177,31 +189,33 @@ footer a {
   .title {
     font-size: 1.3rem;
   }
+
   .heart-container {
-    height: auto; /* Adjust the height for smaller screens */
-    margin-bottom: 40px; /* Increase the margin to create more space */
+    margin-top: -60px;
+    margin-bottom: 80px; /* More space for better scrolling */
   }
+
   .heart-gif {
     width: 100%;
-    margin-top: -35px; /* Adjust the margin to crop from the upper side */
+    max-width: 350px;
   }
+
   .heart-content {
-    font-size: 16px;
+    font-size: 18px;
   }
-  .tulip-image {
-    width: 100%; /* Adjust the size for smaller screens */
-  }
+
   .video-container {
-    order: -1; /* Move video player to the top on smaller screens */
+    order: -1;
     width: 100%;
   }
+
   .video-container iframe {
     width: 100%;
-    max-width: none; /* Remove max-width constraint */
+    max-width: none;
   }
 }
 
-/* Adjustments for larger screens */
+/* Adjustments for Larger Screens */
 @media (min-width: 501px) {
   .main-content {
     display: flex;
@@ -209,19 +223,16 @@ footer a {
     align-items: flex-start;
     justify-content: center;
   }
+
   .video-container {
-    margin-right: 20px; /* Space between the video player and the heart */
-    margin-bottom: 0; /* Remove bottom margin */
+    margin-right: 20px;
   }
+
   .heart-container {
-    height: auto; /* Adjust the height for larger screens */
-    margin-bottom: 60px; /* Increase the margin to create more space */
+    margin-bottom: 60px;
   }
+
   .heart-gif {
-    width: 450px; /* Adjust the size for larger screens */
-    margin-top: -50px; /* Adjust the margin to crop from the upper side */
-  }
-  .tulip-container {
-    bottom: 40px; /* Adjust the bottom position to fit above the footer */
+    width: 450px;
   }
 }
