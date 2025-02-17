@@ -1,4 +1,5 @@
-e # 💫 About Me:
+
+💫 About Me:
 <br>	•	Iftikar Hussain, also known as Spidy.<br>	•	Web Developer | Ethical Hacker | Gamer.<br>	•	B.Com student at Gargaon College.<br>	•	Passionate about tech, security, and coding.<br>	•	Loves Lana Del Rey’s music.<br>	•	Solo living, self-driven, and always evolving.<br>
 
 
