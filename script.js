@@ -1,14 +1,63 @@
-function updateCounter() {
-  const startDate = new Date("2021-10-15T00:00:00+05:30"); // October 15, 2021 in IST
+let intervalId;
+
+// Modal handling functions
+function openBrokenHeartPopup() {
+  document.getElementById("brokenHeartModal").style.display = "flex";
+}
+
+function closeBrokenHeartPopup() {
+  document.getElementById("brokenHeartModal").style.display = "none";
+}
+
+// Initialize modal state
+document.addEventListener("DOMContentLoaded", () => {
+  closeBrokenHeartPopup();
+  if (localStorage.getItem("relationshipStartDate")) {
+    document.getElementById("inputForm").style.display = "none";
+    document.getElementById("resetButton").style.display = "block";
+    document.querySelector(".heart-container").style.display = "flex";
+    intervalId = setInterval(updateCounter, 1000);
+  }
+  updateCounter();
+});
+
+function saveDateTime() {
+  const dateInput = document.getElementById("startDate").value;
+  let timeInput = document.getElementById("startTime").value || "00:00";
+
+  const startDateTime = `${dateInput}T${timeInput}:00+05:30`;
+  localStorage.setItem("relationshipStartDate", startDateTime);
+
+  document.getElementById("inputForm").style.display = "none";
+  document.getElementById("resetButton").style.display = "block";
+  document.querySelector(".heart-container").style.display = "flex";
+
+  if (intervalId) clearInterval(intervalId);
+  updateCounter();
+  intervalId = setInterval(updateCounter, 1000);
+}
+
+function resetDateTime() {
+  localStorage.removeItem("relationshipStartDate");
+  location.reload();
+}
+
+function calculateISTDuration(startDate) {
   const now = new Date();
 
-  let years = now.getFullYear() - startDate.getFullYear();
-  let months = now.getMonth() - startDate.getMonth();
-  let days = now.getDate() - startDate.getDate();
-  let hours = now.getHours() - startDate.getHours();
-  let minutes = now.getMinutes() - startDate.getMinutes();
-  let seconds = now.getSeconds() - startDate.getSeconds();
+  // Convert to IST (UTC+5:30)
+  const options = { timeZone: "Asia/Kolkata" };
+  const istNow = new Date(now.toLocaleString("en-US", options));
+  const istStart = new Date(startDate.toLocaleString("en-US", options));
 
+  let years = istNow.getFullYear() - istStart.getFullYear();
+  let months = istNow.getMonth() - istStart.getMonth();
+  let days = istNow.getDate() - istStart.getDate();
+  let hours = istNow.getHours() - istStart.getHours();
+  let minutes = istNow.getMinutes() - istStart.getMinutes();
+  let seconds = istNow.getSeconds() - istStart.getSeconds();
+
+  // Adjust negative values
   if (seconds < 0) {
     seconds += 60;
     minutes--;
@@ -22,8 +71,8 @@ function updateCounter() {
     days--;
   }
   if (days < 0) {
-    const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-    days += previousMonth.getDate();
+    const prevMonth = new Date(istNow.getFullYear(), istNow.getMonth(), 0);
+    days += prevMonth.getDate();
     months--;
   }
   if (months < 0) {
@@ -31,44 +80,56 @@ function updateCounter() {
     years--;
   }
 
-  document.getElementById("counter").innerHTML = `
-        <p>${years} Years, ${months} Months</p>
-        <p>${days} Days, ${hours} Hours</p>
-        <p>${minutes} Minutes, ${seconds} Seconds</p>
-    `;
+  // Calculate totals
+  const totalMonths = years * 12 + months;
+  const diffMs = istNow - istStart;
+  const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const totalHours = Math.floor(diffMs / (1000 * 60 * 60));
+  const totalMinutes = Math.floor(diffMs / (1000 * 60));
+  const totalSeconds = Math.floor(diffMs / 1000);
+
+  return {
+    years,
+    months: totalMonths,
+    days: totalDays,
+    hours: totalHours,
+    minutes: totalMinutes,
+    seconds: totalSeconds,
+  };
 }
 
-// Update counter every second
-setInterval(updateCounter, 1000);
-updateCounter();
-
-document.addEventListener("DOMContentLoaded", function () {
-  const videoPlayer = document.getElementById("video-player");
-  const prevButton = document.getElementById("prev-video");
-  const nextButton = document.getElementById("next-video");
-
-  const videos = [
-    "https://www.youtube.com/embed/2HTKMy4v_YQ?si=wZ-S2-IDiJaE6y6B",
-    "https://www.youtube.com/embed/M53gBWkk2WM?si=ZZkOkdzq3O0t4Y3M",
-    "https://www.youtube.com/embed/X5qrZ_ZYvl4?si=F7QqmmPF2czxau6F",
-  ];
-
-  let currentVideoIndex = 0;
-
-  function loadVideo(index) {
-    videoPlayer.src = videos[index];
+function updateCounter() {
+  const storedDate = localStorage.getItem("relationshipStartDate");
+  if (!storedDate) {
+    document.getElementById("inputForm").style.display = "block";
+    document.querySelector(".heart-container").style.display = "none";
+    return;
   }
 
-  prevButton.addEventListener("click", function () {
-    currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
-    loadVideo(currentVideoIndex);
-  });
+  const startDate = new Date(storedDate);
+  const duration = calculateISTDuration(startDate);
 
-  nextButton.addEventListener("click", function () {
-    currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-    loadVideo(currentVideoIndex);
-  });
+  if (duration.seconds < 0) {
+    document.getElementById("counter").innerHTML = "Invalid date (future date)";
+    return;
+  }
 
-  // Load the first video initially
-  loadVideo(currentVideoIndex);
-});
+  // Calculate total years
+  const totalYears = Math.floor(duration.months / 12);
+
+  // Format numbers in Indian numbering system
+  const formatter = new Intl.NumberFormat("en-IN");
+
+  document.getElementById("counter").innerHTML = `
+    <p>${formatter.format(totalYears)} Years, ${formatter.format(
+    duration.months
+  )} Months</p>
+    <p>${formatter.format(duration.days)} Days, ${formatter.format(
+    duration.hours
+  )} Hours</p>
+    <p></p>
+    <p>${formatter.format(duration.minutes)} Minutes</p>
+    <p>${formatter.format(duration.seconds)} Seconds</p>
+    <p>&#127799;</p>
+  `;
+}

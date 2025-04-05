@@ -6,71 +6,98 @@
     <title>SpidyCoderGoldenTimeCounter</title>
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
   </head>
   <body class="not-loaded">
     <!-- Background Canvas -->
     <div class="content content--canvas"></div>
-
-    <!-- YouTube Video Player -->
-    <div class="video-container">
-      <iframe
-        id="video-player"
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/2HTKMy4v_YQ"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      ></iframe>
-      <div class="video-controls">
-        <button id="prev-video" class="video-button"> Prev </button>
-        <button id="next-video" class="video-button">Next</button>
-      </div>
-    </div>
-
     <!-- Main Content -->
     <h1 class="title">
-      Counting the Golden Time of My Life with My Soulmate.<br /><b>Mj♥</b>&#127799;
+      Count the Golden Time With your Life with Your <br /><b>Loved ♥ One</b
+      >&#127799;
     </h1>
+    <!-- Add this in your HTML -->
+    <div class="datetime-container" id="inputForm">
+      <div class="datetime-card">
+        <h2 class="form-title">
+          Start Counting beautiful Moments Together&infin;
+        </h2>
+        <div class="datetime-inputs">
+          <div class="input-group">
+            <input type="date" id="startDate" required />
+            <label for="startDate" class="input-label">Start Date</label>
+            <span class="input-icon">📅</span>
+          </div>
+          <div class="input-group">
+            <input type="time" id="startTime" required />
+            <label for="startTime" class="input-label">Start Time</label>
+            <span class="input-icon">⏰</span>
+          </div>
+        </div>
+        <button class="submit-btn" onclick="saveDateTime()">
+          <span>Start Counting Love</span>
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path
+              fill="currentColor"
+              d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <button onclick="resetDateTime()" id="resetButton" style="display: none">
+      Reset
+    </button>
     <div class="heart-container">
-      <img src="heart-16858.gif" alt="Heart Animation" class="heart-gif" />
+      <img src="Heart of Love.png" alt="Heart Animation" class="heart-gif" />
       <div id="counter" class="heart-content"></div>
     </div>
 
     <!-- Tulip Image -->
     <div class="tulip-container">
-      <img src="Tulip.png" alt="Tulip" class="tulip-image" />
+      <img src="Tulip.png" alt="Tulips" loading="lazy" class="tulip-image" />
     </div>
 
     <!-- Footer -->
     <footer>
-      <p>
-        <img src="Logo-1.png" alt="Logo" class="footer-logo" />
-        &copy;
-        <a href="https://spidycoderproject1.netlify.app" target="_blank"
-          >SpidyOrg</a
-        >
-        <a
-          href="https://www.instagram.com/iftikhar.hssn"
-          target="_blank"
-          class="instagram-link"
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
-            alt="Instagram"
-            class="instagram-icon"
-          />
-        </a>
-      </p>
-    </footer>
+      &copy;
+      <a href="https://www.instagram.com/iftikhar.hssn" target="_blank"
+        >SpidyOrg</a
+      >
+      <!-- Broken Heart Trigger -->
+      <div class="broken-heart-trigger" onclick="openBrokenHeartPopup()">
+        <img
+          src="Heart-of-Broke.png"
+          alt="Broken Heart"
+          class="broken-heart-small"
+        />
+        
+      </div>
 
+      <!-- Broken Heart Modal -->
+      <div id="brokenHeartModal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn" onclick="closeBrokenHeartPopup()"
+            >&times;</span
+          >
+          <img
+            src="Heart-of-Broke.png"
+            alt="Broken Heart"
+            class="broken-heart-big"
+          />
+          <p class="broken-heart-text">
+            41 Months,
+            892 Days<br />
+            21,408.39 Hours<br />
+            1,284,519 Minutes<br />
+            77,071,140 Seconds
+          </p>
+        </div>
+      </div>
+    </footer>
     <!-- JavaScript Files -->
-    <script defer src="noise.min.js"></script>
-    <script defer src="util.js"></script>
-    <script defer src="shift.js"></script>
     <script defer src="script.js"></script>
+    <script>
+      
+    </script>
   </body>
 </html>

@@ -10,125 +10,81 @@
 
 /* Global Styling */
 body {
-  background: transparent; /* Background handled by canvas */
+  background: radial-gradient(at 80% 80%, #ed63ca 25.4%, #0000 26%),
+    radial-gradient(at 20% 80%, #ed63ca 25.4%, #0000 26%),
+    conic-gradient(from -45deg at 50% 41%, #ed63ca 90deg, #d12aad 0) 7.5px 0;
+  background-size: 15px 15px;
   color: whitesmoke;
   font-family: serif, koela;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  height: auto;
-  min-height: 100vh;
   margin: 0;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  overflow-y: auto; /* Allow vertical scrolling */
-  user-select: none; /* Prevent text selection */
-  -webkit-user-select: none; /* Safari support */
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-h1 {
-  color: rgb(255, 124, 146);
-}
-
-/* Top Title */
+/* Title Styling */
 .title {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  right: 0;
   text-shadow: black 0px 0px 10px;
   font-size: 2rem;
-  margin-bottom: 10px;
-  color: #ff4c6a;
+  color: #3bf5ffd6;
+  z-index: 2;
+  text-align: center;
+  padding: 0 5px;
+  box-sizing: border-box;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .title b {
-  color: lightpink; /* Correct lavender pink color */
+  color: rgb(243, 182, 191);
 }
 
-/* Heart GIF Container */
+/* Heart Container */
 .heart-container {
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-shadow: black 0px 0px 10px;
-  overflow: hidden; /* Hide overflow */
-  height: auto;
-  margin-bottom: 60px; /* More spacing for scrollable effect */
+  z-index: 1;
 }
 
-/* Heart GIF */
 .heart-gif {
   width: 400px;
   height: auto;
 }
 
-/* Counter Inside Heart */
 .heart-content {
   position: absolute;
-  top: 45%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: "Copperplate, Papyrus, fantasy";
+  font-family: Jazz LET, fantasy;
   font-size: 22px;
-  color: rgb(246, 5, 5);
+  color: rgb(26, 196, 179);
   text-align: center;
   text-shadow: 2px 2px 5px black;
 }
 
-/* Video Player Styling */
-.video-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 40px;
-}
-
-.video-container iframe {
-  width: 100%;
-  max-width: 560px;
-  height: auto;
-}
-
-.video-controls {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  max-width: 560px;
-  margin-top: 10px;
-}
-
-.video-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #f96f86;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  margin: 0 10px;
-  transition: background-color 0.3s ease;
-}
-
-.video-button:hover {
-  background-color: #ff4c6a;
-}
-
-/* Tulip Image Styling (Fixed Below Heart GIF) */
+/* Tulip Container */
 .tulip-container {
   position: fixed;
-  top: calc(50% + 220px); /* Adjusted to stay below the heart */
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   display: flex;
   justify-content: center;
-}
-
-/* Adjustments for Small Screens */
-@media (max-width: 500px) {
-  .tulip-container {
-    top: calc(35% + 180px); /* Adjusted for smaller screens */
-  }
+  z-index: 0;
 }
 
 .tulip-image {
@@ -136,103 +92,366 @@ h1 {
   height: auto;
 }
 
-
-/* Footer Styling (Fixed at Bottom) */
+/* Footer Styling */
 footer {
-  width: 100%;
-  text-align: center;
-  background-color: transparent;
-  color: #e6e6fa;
-  padding: 10px 0;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 1; /* Above the tulip */
-}
-
-footer p {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: #e6e6fa;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #000000;
+  z-index: 1;
 }
 
 footer a {
-  color: #e6e6fa;
+  color: #000000;
   text-decoration: none;
+  font-weight: bold;
 }
 
-.instagram-icon {
-  width: 20px;
-  height: 20px;
-  vertical-align: middle;
+/* Date/Time Picker Styles */
+.datetime-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  animation: slideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.instagram-link img {
-  transition: transform 0.3s ease-in-out;
+.datetime-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  max-width: 85vw;
 }
 
-.instagram-link img:hover {
-  transform: scale(1.2);
+.form-title {
+  color: #ff4c6a;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-family: "Arial Rounded MT Bold", sans-serif;
 }
 
-.footer-logo {
-  width: 40px;
-  height: auto;
-  margin-right: 10px;
+.datetime-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-/* Responsive Fix */
+/* Update the existing input-related styles */
+.input-group {
+  position: relative;
+  overflow: hidden; /* Prevent any overflow */
+}
+
+.input-label {
+  position: absolute;
+  left: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  width: calc(100% - 3rem); /* Limit label width */
+  white-space: nowrap; /* Prevent line breaks */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Show ellipsis if needed */
+}
+
+input[type="date"],
+input[type="time"] {
+  width: calc(100% - 1rem); /* Account for horizontal padding */
+  box-sizing: border-box; /* Include padding in width calculation */
+  padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+  font-size: 0.9rem;
+  border: 2px solid #eee;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #333;
+}
+
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="date"]:valid,
+input[type="time"]:valid {
+  border-color: #ff4c6a;
+  outline: none;
+}
+
+input[type="date"]:focus + .input-label,
+input[type="time"]:focus + .input-label,
+input[type="date"]:valid + .input-label,
+input[type="time"]:valid + .input-label {
+  transform: translateY(-160%);
+  left: 0.8rem;
+  font-size: 0.7rem;
+  color: #ff4c6a;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9); /* Scale down icons */
+  font-size: 1rem;
+  color: #ff4c6a;
+}
+
+/* Add placeholder styling */
+input[type="date"]::placeholder,
+input[type="time"]::placeholder {
+  color: transparent;
+}
+
+input[type="date"]:focus::placeholder,
+input[type="time"]:focus::placeholder {
+  color: #ccc;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 76, 106, 0.3);
+}
+
+.submit-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.submit-btn:hover svg {
+  transform: translateX(5px);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Reset Button */
+#resetButton {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+  border: none;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  z-index: 3;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(255, 76, 106, 0.3);
+  transition: all 0.3s ease;
+}
+
+#resetButton:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 76, 106, 0.4);
+}
+
+/* Responsive Adjustments */
 @media (max-width: 500px) {
   .title {
     font-size: 1.3rem;
   }
 
-  .heart-container {
-    margin-top: -60px;
-    margin-bottom: 80px; /* More space for better scrolling */
-  }
-
   .heart-gif {
-    width: 100%;
+    width: 100vh;
     max-width: 350px;
   }
 
   .heart-content {
-    font-size: 18px;
+    font-size: 16px;
   }
 
-  .video-container {
-    order: -1;
+  .tulip-image {
     width: 100%;
+    max-width: 350px;
   }
 
-  .video-container iframe {
-    width: 100%;
-    max-width: none;
+  .datetime-card {
+    padding: 1rem;
+    width: 280px;
+  }
+
+  .form-title {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  input[type="date"],
+  input[type="time"] {
+    padding: 0.6rem 0.6rem 0.6rem 2.2rem;
+    font-size: 0.8rem;
+    width: calc(100% - 0.8rem); /* Adjusted width */
+  }
+
+  .input-label {
+    left: 2.2rem;
+    width: calc(100% - 2.5rem);
+    font-size: 0.8rem;
+  }
+
+  .input-icon {
+    left: 0.6rem;
+    transform: translateY(-50%) scale(0.8);
+  }
+
+  input[type="date"]:focus + .input-label,
+  input[type="time"]:focus + .input-label,
+  input[type="date"]:valid + .input-label,
+  input[type="time"]:valid + .input-label {
+    transform: translateY(-160%);
+    left: 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  .submit-btn {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+
+  .submit-btn svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
-/* Adjustments for Larger Screens */
-@media (min-width: 501px) {
-  .main-content {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
+@media (max-width: 350px) {
+  .datetime-card {
+    width: 260px;
+    padding: 0.8rem;
   }
 
-  .video-container {
-    margin-right: 20px;
+  .form-title {
+    font-size: 1.2rem;
   }
 
-  .heart-container {
-    margin-bottom: 60px;
+  input[type="date"],
+  input[type="time"] {
+    padding-left: 2rem;
+    font-size: 0.75rem;
   }
 
-  .heart-gif {
-    width: 450px;
+  .input-label {
+    left: 2rem;
+    width: calc(100% - 2.2rem);
+    font-size: 0.75rem;
   }
+
+  .input-icon {
+    left: 0.5rem;
+    transform: translateY(-50%) scale(0.7);
+  }
+}
+
+/* Small Broken Heart */
+.broken-heart-trigger {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.broken-heart-small {
+  width: 30px;
+  transition: transform 0.3s ease;
+}
+
+.broken-heart-small:hover {
+  transform: scale(1.1);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 20, 20, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.modal-content {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-family: "Brush Script MT", cursive;
+}
+
+.broken-heart-big {
+  width: 150px;
+  position: relative; /* Ensure the text is positioned relative to the heart */
+  bottom: 130px; /* Move the heart 50px up from the bottom */
+}
+
+.broken-heart-text {
+  font-size: 0.8rem; /* Adjust font size to fit inside the heart */
+  line-height: 1.2rem;
+  text-align: center;
+  margin: 0; /* Remove margin to avoid shifting */
+  position: absolute; /* Position the text inside the heart */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for perfect centering */
+  width: 100%; /* Ensure text doesn't overflow */
+  color: rgb(215, 207, 202); /* Ensure visibility */
+  pointer-events: none; /* Prevent interaction with the text */
+bottom: -290px;
+}
+
+/* .broken-heart-text {
+  font-size: 1.6rem;
+  line-height: 1.2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+} */
+
+.close-btn {
+  position: absolute;
+  top: -120px;
+  right: 10px;
+  font-size: 2rem;
+  color: white;
+  z-index: 1200;
+  cursor: pointer;
 }
