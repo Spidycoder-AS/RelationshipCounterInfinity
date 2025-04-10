@@ -11,7 +11,6 @@ function closeBrokenHeartPopup() {
 
 // Initialize modal state
 document.addEventListener("DOMContentLoaded", () => {
-  closeBrokenHeartPopup();
   if (localStorage.getItem("relationshipStartDate")) {
     document.getElementById("inputForm").style.display = "none";
     document.getElementById("resetButton").style.display = "block";
@@ -127,7 +126,6 @@ function updateCounter() {
     <p>${formatter.format(duration.days)} Days, ${formatter.format(
     duration.hours
   )} Hours</p>
-    <p></p>
     <p>${formatter.format(duration.minutes)} Minutes</p>
     <p>${formatter.format(duration.seconds)} Seconds</p>
     <p>&#127799;</p>
