@@ -38,14 +38,21 @@
     <meta property="og:site_name" content="Golden Time Counter" />
     <title>GoldenTimeCounter</title>
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="styles.css" />
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <link
+      rel="preload"
+      href="styles.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="styles.css" /></noscript>
   </head>
   <body class="not-loaded">
     <!-- Background Canvas -->
     <div class="content content--canvas"></div>
     <!-- Main Content -->
     <h1 class="title">
-      Count the Golden Time With your Life with Your <br /><b>Loved ♥ One</b
+      Count the Golden Time of your Life with Your <br /><b>Loved ♥ One</b
       >&#127799;
     </h1>
     <!-- Add this in your HTML -->

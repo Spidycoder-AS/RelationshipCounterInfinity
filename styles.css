@@ -68,7 +68,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: Jazz LET, fantasy;
+  font-family: Satisfy, fantasy !important;
   font-size: 22px;
   color: rgb(26, 196, 179);
   text-align: center;
