@@ -40,67 +40,85 @@
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="styles.css" />
     <!-- Add Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <!-- Background Canvas -->
     <div class="content content--canvas">
-    <!-- Main Content -->
-    <h1 class="title">
-      Count the Golden Time of your Life with Your <br /><b>Loved ♥ One</b
-      >&#127799;
-    </h1>
-    <!-- Add this in your HTML -->
-    <div class="datetime-container" id="inputForm">
-      <div class="datetime-card">
-        <h2 class="form-title">
-          Start Counting beautiful Moments Together&infin;
-        </h2>
-        <div id="errorMessage" class="error-message"></div>
-        <div class="datetime-inputs">
-          <div class="input-group">
-            <input type="date" id="startDate" required />
-            <label for="startDate" class="input-label">Start Date</label>
-            <span class="input-icon">📅</span>
-          </div>
-          <div class="input-group">
-            <input type="time" id="startTime" required />
-            <label for="startTime" class="input-label">Start Time</label>
-            <span class="input-icon">⏰</span>
+    <div class="container">
+      <!-- Background Canvas -->
+        <!-- Main Content -->
+        <h1 class="title">
+          Count the Golden Time of your Life with Your <br /><b>Loved ♥ One</b
+          >&#127799;
+        </h1>
+        <!-- Add this in your HTML -->
+        <div class="datetime-container" id="inputForm">
+          <div class="datetime-card">
+            <h2 class="form-title">
+              Start Counting beautiful Moments Together&infin;
+            </h2>
+            <div id="errorMessage" class="error-message"></div>
+            <div class="datetime-inputs">
+              <div class="input-group">
+                <input type="date" id="startDate" required />
+                <label for="startDate" class="input-label">Start Date</label>
+                <span class="input-icon">📅</span>
+              </div>
+              <div class="input-group">
+                <input type="time" id="startTime" required />
+                <label for="startTime" class="input-label">Start Time</label>
+                <span class="input-icon">⏰</span>
+              </div>
+            </div>
+            <button class="submit-btn" onclick="saveDateTime()">
+              <span>Start Counting Love</span>
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path
+                  fill="currentColor"
+                  d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                />
+              </svg>
+            </button>
           </div>
         </div>
-        <button class="submit-btn" onclick="saveDateTime()">
-          <span>Start Counting Love</span>
-          <svg viewBox="0 0 24 24" width="24" height="24">
-            <path
-              fill="currentColor"
-              d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
-            />
-          </svg>
+        <button
+          onclick="resetDateTime()"
+          id="resetButton"
+          style="display: none"
+        >
+          Reset
         </button>
-      </div>
-    </div>
-    <button onclick="resetDateTime()" id="resetButton" style="display: none">
-      Reset
-    </button>
-    <div class="heart-container">
-      <img src="./assets/heart-of-love.png" alt="Heart Animation" class="heart-gif" />
-      <div id="counter" class="heart-content"></div>
-    </div>
+        <div class="heart-container">
+          <img
+            src="./assets/heart-of-love.png"
+            alt="Heart Animation"
+            class="heart-gif"
+          />
+          <div id="counter" class="heart-content"></div>
+        </div>
 
-    <!-- Tulip Image -->
-    <div class="tulip-container">
-      <img src="./assets/tulip.png" alt="Tulips" loading="lazy" class="tulip-image" />
+        <!-- Tulip Image -->
+        <div class="tulip-container">
+          <img
+            src="./assets/tulip.png"
+            alt="Tulips"
+            loading="lazy"
+            class="tulip-image"
+          />
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer>
+        &copy;
+        <a href="https://iftikhariscoding.netlify.app/" target="_blank"
+          >SpidyOrg</a
+        >
+        <span style="font-weight: bold">2025</span>
+      </footer>
     </div>
-  </div>
-    <!-- Footer -->
-    <footer>
-      &copy;
-      <a href="https://iftikhariscoding.netlify.app/" target="_blank"
-        >SpidyOrg</a
-      >
-      <span style="font-weight: bold;">2025</span>
-    </footer>
     <!-- JavaScript Files -->
     <script src="script.js"></script>
   </body>

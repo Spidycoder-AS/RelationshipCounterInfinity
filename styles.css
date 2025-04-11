@@ -10,17 +10,90 @@
 
 /* Global Styling */
 body {
-  background: radial-gradient(at 80% 80%, #ed63ca 25.4%, #0000 26%),
+  /* background: radial-gradient(at 80% 80%, #ed63ca 25.4%, #0000 26%),
     radial-gradient(at 20% 80%, #ed63ca 25.4%, #0000 26%),
     conic-gradient(from -45deg at 50% 41%, #ed63ca 90deg, #d12aad 0) 7.5px 0;
-  background-size: 15px 15px;
+  background-size: 15px 15px; */
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #ffe8f3,
+    #d9f3ff
+  ); /* Soft pastel gradient background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: whitesmoke;
-  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+  font-family: "Comic Neue", "Comic Sans MS", cursive;
   text-align: center;
   margin: 0;
   overflow: hidden;
   user-select: none;
   -webkit-user-select: none;
+}
+.container {
+  position: relative;
+  width: 100%; /* Fill the entire screen */
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2),
+    rgba(0, 0, 0, 0.1)
+  );
+}
+
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    #ff9aa2,
+    /* Soft pink */ #ffb7b2,
+    /* Light peach */ #ffdac1,
+    /* Pastel yellow */ #e2f0cb,
+    /* Mint green */ #a2e4ff,
+    /* Baby blue */ #c9afff,
+    /* Lavender */ #ffb7b2,
+    #ff9aa2
+  );
+  transform: translate(-50%, -50%);
+  animation: rotate 8s linear infinite;
+  filter: blur(50px); /* Create a soft glowing effect */
+  opacity: 0.8;
+}
+
+/* Secondary rotating layer for depth */
+.container::after {
+  width: 180%;
+  height: 180%;
+  animation: rotate-reverse 10s linear infinite;
+  opacity: 0.6;
+}
+
+/* Rotating animations */
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes rotate-reverse {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
 }
 
 /* Title Styling */
@@ -72,9 +145,9 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Comic Neue', 'Comic Sans MS', cursive !important;
+  font-family: "Comic Neue", "Comic Sans MS", cursive !important;
   font-size: 22px;
-  color: rgb(26, 196, 179);
+  color: rgb(30, 249, 227);
   text-align: center;
   text-shadow: 2px 2px 5px black;
   width: 80%;
@@ -416,7 +489,7 @@ input[type="time"]:focus::placeholder {
   gap: 8px;
   opacity: 0;
   transition: all 0.3s ease;
-  font-family: 'Comic Neue', 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+  font-family: "Comic Neue", "Arial Rounded MT Bold", "Segoe UI", sans-serif;
   letter-spacing: 0.5px;
   font-weight: 600;
 }
