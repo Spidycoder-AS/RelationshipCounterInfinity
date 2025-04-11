@@ -15,7 +15,7 @@ body {
     conic-gradient(from -45deg at 50% 41%, #ed63ca 90deg, #d12aad 0) 7.5px 0;
   background-size: 15px 15px;
   color: whitesmoke;
-  font-family: serif, koela;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
   text-align: center;
   margin: 0;
   overflow: hidden;
@@ -56,11 +56,15 @@ body {
   justify-content: center;
   text-shadow: black 0px 0px 10px;
   z-index: 1;
+  width: 100%;
+  max-width: 100vw;
 }
 
 .heart-gif {
   width: 400px;
   height: auto;
+  max-width: 100%;
+  position: relative;
 }
 
 .heart-content {
@@ -68,11 +72,16 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: Comic Sans MS, fantasy !important;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive !important;
   font-size: 22px;
   color: rgb(26, 196, 179);
   text-align: center;
   text-shadow: 2px 2px 5px black;
+  width: 80%;
+  max-width: 300px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  font-weight: 700;
 }
 
 /* Tulip Container */
@@ -132,7 +141,7 @@ footer a {
 .form-title {
   color: #ff4c6a;
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   text-align: center;
   font-family: "Arial Rounded MT Bold", sans-serif;
 }
@@ -143,10 +152,9 @@ footer a {
   gap: 1rem;
 }
 
-/* Update the existing input-related styles */
 .input-group {
   position: relative;
-  overflow: hidden; /* Prevent any overflow */
+  overflow: hidden;
 }
 
 .input-label {
@@ -158,16 +166,16 @@ footer a {
   pointer-events: none;
   transition: all 0.3s ease;
   font-size: 0.9rem;
-  width: calc(100% - 3rem); /* Limit label width */
-  white-space: nowrap; /* Prevent line breaks */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Show ellipsis if needed */
+  width: calc(100% - 3rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 input[type="date"],
 input[type="time"] {
-  width: calc(100% - 1rem); /* Account for horizontal padding */
-  box-sizing: border-box; /* Include padding in width calculation */
+  width: calc(100% - 1rem);
+  box-sizing: border-box;
   padding: 0.8rem 0.8rem 0.8rem 2.5rem;
   font-size: 0.9rem;
   border: 2px solid #eee;
@@ -199,12 +207,11 @@ input[type="time"]:valid + .input-label {
   position: absolute;
   left: 0.8rem;
   top: 50%;
-  transform: translateY(-50%) scale(0.9); /* Scale down icons */
+  transform: translateY(-50%) scale(0.9);
   font-size: 1rem;
   color: #ff4c6a;
 }
 
-/* Add placeholder styling */
 input[type="date"]::placeholder,
 input[type="time"]::placeholder {
   color: transparent;
@@ -286,13 +293,23 @@ input[type="time"]:focus::placeholder {
     font-size: 1.3rem;
   }
 
+  .heart-container {
+    width: 100vw;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
   .heart-gif {
-    width: 100vh;
-    max-width: 350px;
+    width: 100vw;
+    max-width: none;
+    height: auto;
   }
 
   .heart-content {
     font-size: 16px;
+    width: 70%;
+    max-width: 250px;
+    padding: 0 5px;
   }
 
   .tulip-image {
@@ -307,151 +324,111 @@ input[type="time"]:focus::placeholder {
 
   .form-title {
     font-size: 1rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.6rem;
   }
-
   input[type="date"],
   input[type="time"] {
-    padding: 0.6rem 0.6rem 0.6rem 2.2rem;
+    padding: 0.7rem 0.7rem 0.7rem 2.2rem;
     font-size: 0.8rem;
-    width: calc(100% - 0.8rem); /* Adjusted width */
   }
-
   .input-label {
-    left: 2.2rem;
-    width: calc(100% - 2.5rem);
     font-size: 0.8rem;
   }
-
   .input-icon {
-    left: 0.6rem;
-    transform: translateY(-50%) scale(0.8);
+    font-size: 0.9rem;
   }
-
   input[type="date"]:focus + .input-label,
   input[type="time"]:focus + .input-label,
   input[type="date"]:valid + .input-label,
   input[type="time"]:valid + .input-label {
-    transform: translateY(-160%);
-    left: 0.6rem;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
-
   .submit-btn {
     font-size: 0.9rem;
     padding: 0.7rem;
   }
-
   .submit-btn svg {
     width: 20px;
     height: 20px;
   }
+  .error-message {
+    font-size: 0.9rem;
+    min-height: 20px;
+    margin: 6px 0;
+  }
+  .error-message img {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 @media (max-width: 350px) {
+  .heart-container {
+    width: 100vw;
+  }
+
+  .heart-gif {
+    width: 100vw;
+  }
+
+  .heart-content {
+    font-size: 14px;
+    width: 65%;
+    max-width: 200px;
+  }
+
   .datetime-card {
-    width: 260px;
-    padding: 0.8rem;
+    width: 250px;
   }
-
   .form-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
-
   input[type="date"],
   input[type="time"] {
-    padding-left: 2rem;
+    padding: 0.6rem 0.6rem 0.6rem 2rem;
     font-size: 0.75rem;
   }
-
   .input-label {
-    left: 2rem;
-    width: calc(100% - 2.2rem);
     font-size: 0.75rem;
   }
-
   .input-icon {
-    left: 0.5rem;
-    transform: translateY(-50%) scale(0.7);
+    font-size: 0.8rem;
+  }
+  .error-message {
+    font-size: 0.85rem;
+    min-height: 18px;
+    margin: 4px 0;
+  }
+  .error-message img {
+    width: 14px;
+    height: 14px;
   }
 }
 
-/* Small Broken Heart */
-.broken-heart-trigger {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-.broken-heart-small {
-  width: 30px;
-  transition: transform 0.3s ease;
-}
-
-.broken-heart-small:hover {
-  transform: scale(1.1);
-}
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1100;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(20, 20, 20, 0.9);
+.error-message {
+  color: #129de7 !important;
+  font-size: 1.1rem;
+  margin: 8px 0;
+  min-height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  font-family: 'Comic Neue', 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+  letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
-.modal-content {
-  position: relative;
-  text-align: center;
-  color: white;
-  font-family: "Brush Script MT", cursive;
+.error-message img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  vertical-align: middle;
 }
 
-.broken-heart-big {
-  width: 150px;
-  position: relative; /* Ensure the text is positioned relative to the heart */
-  bottom: 130px; /* Move the heart 50px up from the bottom */
-}
-
-.broken-heart-text {
-  font-size: 0.8rem; /* Adjust font size to fit inside the heart */
-  line-height: 1.2rem;
-  text-align: center;
-  margin: 0; /* Remove margin to avoid shifting */
-  position: absolute; /* Position the text inside the heart */
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Adjust for perfect centering */
-  width: 100%; /* Ensure text doesn't overflow */
-  color: rgb(215, 207, 202); /* Ensure visibility */
-  pointer-events: none; /* Prevent interaction with the text */
-bottom: -290px;
-}
-
-/* .broken-heart-text {
-  font-size: 1.6rem;
-  line-height: 1.2rem;
-  text-align: center;
-  margin-bottom: 20px;
-  width: 100%;
-} */
-
-.close-btn {
-  position: absolute;
-  top: -120px;
-  right: 10px;
-  font-size: 2rem;
-  color: white;
-  z-index: 1200;
-  cursor: pointer;
+.error-message.show {
+  opacity: 1;
+  transform: translateY(2px);
 }

@@ -1,14 +1,5 @@
 let intervalId;
 
-// Modal handling functions
-function openBrokenHeartPopup() {
-  document.getElementById("brokenHeartModal").style.display = "flex";
-}
-
-function closeBrokenHeartPopup() {
-  document.getElementById("brokenHeartModal").style.display = "none";
-}
-
 // Initialize modal state
 document.addEventListener("DOMContentLoaded", () => {
   if (localStorage.getItem("relationshipStartDate")) {
@@ -22,8 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function saveDateTime() {
   const dateInput = document.getElementById("startDate").value;
-  let timeInput = document.getElementById("startTime").value || "00:00";
+  const timeInput = document.getElementById("startTime").value || "00:00";
+  const errorMessage = document.getElementById("errorMessage");
 
+  if (!dateInput) {
+    errorMessage.innerHTML = '<img src="./assets/love.png" alt="love" /> please enter a date';
+    errorMessage.classList.add("show");
+    return;
+  }
+
+  errorMessage.classList.remove("show");
   const startDateTime = `${dateInput}T${timeInput}:00+05:30`;
   localStorage.setItem("relationshipStartDate", startDateTime);
 

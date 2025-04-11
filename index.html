@@ -38,18 +38,13 @@
     <meta property="og:site_name" content="Golden Time Counter" />
     <title>GoldenTimeCounter</title>
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-    <!-- <link rel="stylesheet" href="styles.css" /> -->
-    <link
-      rel="preload"
-      href="styles.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="styles.css" /></noscript>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <!-- Background Canvas -->
-    <div class="content content--canvas"></div>
+    <div class="content content--canvas">
     <!-- Main Content -->
     <h1 class="title">
       Count the Golden Time of your Life with Your <br /><b>Loved ♥ One</b
@@ -61,6 +56,7 @@
         <h2 class="form-title">
           Start Counting beautiful Moments Together&infin;
         </h2>
+        <div id="errorMessage" class="error-message"></div>
         <div class="datetime-inputs">
           <div class="input-group">
             <input type="date" id="startDate" required />
@@ -88,22 +84,22 @@
       Reset
     </button>
     <div class="heart-container">
-      <img src="Heart of Love.png" alt="Heart Animation" class="heart-gif" />
+      <img src="./assets/heart-of-love.png" alt="Heart Animation" class="heart-gif" />
       <div id="counter" class="heart-content"></div>
     </div>
 
     <!-- Tulip Image -->
     <div class="tulip-container">
-      <img src="Tulip.png" alt="Tulips" loading="lazy" class="tulip-image" />
+      <img src="./assets/tulip.png" alt="Tulips" loading="lazy" class="tulip-image" />
     </div>
-
+  </div>
     <!-- Footer -->
     <footer>
       &copy;
-      <a href="https://www.instagram.com/iftikhar.hssn" target="_blank"
+      <a href="https://iftikhariscoding.netlify.app/" target="_blank"
         >SpidyOrg</a
       >
-      <span>2025</span>
+      <span style="font-weight: bold;">2025</span>
     </footer>
     <!-- JavaScript Files -->
     <script src="script.js"></script>
