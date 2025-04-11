@@ -15,7 +15,7 @@ body {
     conic-gradient(from -45deg at 50% 41%, #ed63ca 90deg, #d12aad 0) 7.5px 0;
   background-size: 15px 15px; */
   padding: 0;
-  height: 100vh;
+  /* height: 100vh; */
   background: linear-gradient(
     135deg,
     #ffe8f3,
@@ -114,7 +114,7 @@ body {
 }
 
 .title b {
-  color: rgb(243, 182, 191);
+  color: rgb(227, 70, 94);
 }
 
 /* Heart Container */
