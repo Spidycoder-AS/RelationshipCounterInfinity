@@ -1,3 +1,56 @@
+/* Header Bar */
+.header-bar {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+  padding: 10px 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 10;
+  border-radius: 0 0 10px 10px;
+  margin-bottom: 15px;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  margin-right: 15px;
+  margin-left: 15px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.header-text {
+  font-size: 0.8rem;
+  flex: 1;
+  text-align: center;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+header h1 {
+  margin-right: 50px;
+}
+
+@media (max-width: 500px) {
+  .header-bar {
+    padding: 8px 10px;
+    margin-bottom: 10px;
+  }
+  
+  .logo {
+    height: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
+  .header-text {
+    font-size: 0.5rem;
+  }
+}
+
 /* Background Canvas */
 .content--canvas {
   position: fixed;
@@ -99,12 +152,12 @@ body {
 /* Title Styling */
 .title {
   position: fixed;
-  top: 10px;
+  top: 100px;
   left: 0;
   right: 0;
-  text-shadow: black 0px 0px 10px;
-  font-size: 2rem;
-  color: #3bf5ffd6;
+  text-shadow: black 0px 0px 20px;
+  font-size: 1.6rem;
+  color: #f32891d6;
   z-index: 2;
   text-align: center;
   padding: 0 5px;
@@ -114,7 +167,7 @@ body {
 }
 
 .title b {
-  color: rgb(227, 70, 94);
+  color: rgb(255, 40, 72);
 }
 
 /* Heart Container */
@@ -142,11 +195,11 @@ body {
 
 .heart-content {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: "Comic Neue", "Comic Sans MS", cursive !important;
-  font-size: 22px;
+  font-family: "Comic Neue", "Comic Sans MS", "cursive" !important;
+  font-size: 18px;
   color: rgb(30, 249, 227);
   text-align: center;
   text-shadow: 2px 2px 5px black;
@@ -182,7 +235,7 @@ footer {
   transform: translateX(-50%);
   text-align: center;
   color: #000000;
-  z-index: 1;
+  z-index: 10; /* Increased z-index to ensure it appears above the tulip image */
 }
 
 footer a {
@@ -251,7 +304,7 @@ input[type="time"] {
   box-sizing: border-box;
   padding: 0.8rem 0.8rem 0.8rem 2.5rem;
   font-size: 0.9rem;
-  border: 2px solid #eee;
+  border: 2px solid #fd43755f;
   border-radius: 12px;
   transition: all 0.3s ease;
   background: transparent;
@@ -363,7 +416,8 @@ input[type="time"]:focus::placeholder {
 /* Responsive Adjustments */
 @media (max-width: 500px) {
   .title {
-    font-size: 1.3rem;
+    font-size: 1rem;
+    top: 68px;
   }
 
   .heart-container {
@@ -380,6 +434,7 @@ input[type="time"]:focus::placeholder {
 
   .heart-content {
     font-size: 16px;
+    top: 38%;
     width: 70%;
     max-width: 250px;
     padding: 0 5px;
@@ -504,4 +559,146 @@ input[type="time"]:focus::placeholder {
 .error-message.show {
   opacity: 1;
   transform: translateY(2px);
+}
+
+/* .heart-content {
+  text-align: center;
+  color: #fff;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+} */
+
+.quote-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 0 5%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .quote-container {
+    gap: 8px;
+    padding: 0 3%;
+    width: 94%;
+  }
+}
+
+@media (max-width: 480px) {
+  .quote-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+}
+
+#customQuote {
+  flex: 1;
+  padding: 10px 15px;
+  border: 2px solid rgba(234, 64, 154, 0.3);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #2b8a94;
+  font-size: 1rem;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  #customQuote {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #customQuote {
+    width: 100%;
+    padding: 10px 15px;
+  }
+}
+
+#customQuote:focus {
+  outline: none;
+  border-color: rgba(223, 40, 104, 0.8);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#customQuote::placeholder {
+  color: rgba(77, 75, 75, 0.6);
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .share-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .share-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+  }
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.share-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.share-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  z-index: 1000;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
 }
