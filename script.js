@@ -134,6 +134,15 @@ function updateCounter() {
 
 // Array of random love quotes for couples
 const loveQuotes = [
+  "With you, every moment feels like a fairytale I never want to end.",
+  "You're not just my love, you're my calm in the chaos, my peace in the storm.",
+  "Falling in love with you was the bestest thing I’ve ever done.",
+  "Your love is the melody that plays in my heart on repeat.",
+  "I still get butterflies, even just thinking about you.",
+  "You turned my ordinary life into a beautiful love story.",
+  "Every day with you is my new favorite day.",
+  "If I had a flower for every time I thought of you, I could walk through my garden forever.",
+  "Your love is my favorite chapter in the book of life.",
   "In your eyes, I found my home. In your heart, I found my love. In your soul, I found my purpose.",
   "Every love story is beautiful, but ours is my favorite.",
   "I have loved you for a thousand years, and I'll love you for a thousand more.",
@@ -185,7 +194,7 @@ function shareCounter() {
   container.style.padding = "40px";
   container.style.borderRadius = "20px";
   container.style.width = "600px";
-  container.style.height = "600px"; // Make it square
+  container.style.height = "600px";
   container.style.display = "flex";
   container.style.flexDirection = "column";
   container.style.alignItems = "center";
@@ -286,7 +295,7 @@ function shareCounter() {
     // Convert canvas to blob
     canvas.toBlob((blob) => {
       // Create a File object
-      const file = new File([blob], "love-counter.png", { type: "image/png" });
+      const file = new File([blob], "EarlyBird by-SpidyCoder Iftikhar.png", { type: "image/png" });
 
       // Share the image
       if (navigator.share) {
@@ -310,13 +319,14 @@ function shareCounter() {
 function fallbackShare(canvas) {
   // Create a download link
   const link = document.createElement("a");
-  link.download = "love-counterSpidyCoder.png";
+  link.download = "EarlyBird by-SpidyCoder Iftikhar.png";
   link.href = canvas.toDataURL("image/png");
 
   // Show a notification
   const notification = document.createElement("div");
   notification.className = "share-notification";
-  notification.textContent = "Click to download your love counter image!";
+  notification.textContent =
+    "Click to download your love counter image with a lovely quote!";
   notification.style.cursor = "pointer";
   notification.onclick = () => link.click();
   document.body.appendChild(notification);
@@ -340,6 +350,6 @@ function openInstagram(username) {
 
   // Open Instagram in the browser after a short delay if the app is not found
   setTimeout(() => {
-    window.open(webLink, "_blank"); // Open Instagram web in a new tab
-  }, 1500); // Wait 1.5 seconds before opening the web link
+    window.open(webLink, "_blank"); 
+  }, 1000); // Wait 1 seconds before opening the link
 }
