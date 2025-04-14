@@ -302,7 +302,8 @@ function shareCounter() {
         navigator
           .share({
             title: "Our Love Journey",
-            text: "Check out our love counter! ❤️",
+            text: "Check out our love counter! ❤️<br>Created by SpidyCoder",
+            url: "https://helloearlybird.netlify.app",
             files: [file],
           })
           .catch((error) => {
