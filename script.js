@@ -303,7 +303,7 @@ function shareCounter() {
           .share({
             title: "Our Love Journey",
             text: "Check out our love counter! ❤️ \nCreated by SpidyCoder",
-            url: "https://helloearlybird.netlify.app",
+            url: "\nhttps://helloearlybird.netlify.app",
             files: [file],
           })
           .catch((error) => {
