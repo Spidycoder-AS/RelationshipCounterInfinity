@@ -1,7 +1,7 @@
 {
-  "name": "babe.spidy",
+  "name": "HelloEarlyBird",
   "version": "1.0.0",
-  "description": "counting your relationship from the beginning to the infinity. with a dedicated video for the love story.",
+  "description": "counting your relationship from the beginning to the infinity. With a sharable link to share with your loved ones with a beautiful card whic includes a random Quote.",
   "main": "noise.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

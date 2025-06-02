@@ -3,123 +3,150 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Meta Description -->
-    <meta
-      name="description"
-      content="Golden Time Counter helps you count the beautiful moments with your loved one since the day you met. Cherish your love with a magical timer."
-    />
-
-    <!-- Keywords -->
-    <meta
-      name="keywords"
-      content="Golden Time Counter, Love Timer, Relationship Timer, Love Counter, Time with Loved One, SpidyCoder, Romantic Timer, Relationship Calculator, Love Calculator, Time Counter, Love Moments, Cherish Love"
-    />
-
-    <!-- Author -->
-    <meta name="author" content="Iftikhar Hussain" />
-
-    <!-- Robots -->
-    <meta name="robots" content="index, follow" />
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="Count Your Golden Time with Loved One ❤️ | SpidyCoder"
-    />
-    <meta
-      property="og:description"
-      content="Start counting your beautiful journey together from the moment you fell in love. Celebrate love with SpidyCoder's Golden Time Counter."
-    />
-    <meta
-      property="og:image"
-      content="https://res.cloudinary.com/dbvbnm8u9/image/upload/v1743865622/GoldenTimeCounter_in8sum.jpg"
-    />
-    <meta property="og:url" content="https://lovedayscounting.netlify.app/" />
-    <meta property="og:site_name" content="Golden Time Counter" />
-    <title>GoldenTimeCounter</title>
-    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <title>Love Counter - Track Your Relationship Journey</title>
     <link rel="stylesheet" href="styles.css" />
-    <!-- Add Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Dancing+Script:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body>
-    <div class="content content--canvas">
-    <div class="container">
-      <!-- Background Canvas -->
-        <!-- Main Content -->
-        <h1 class="title">
-          Count the Golden Time of your Life with Your <br /><b>Loved ♥ One</b
-          >&#127799;
-        </h1>
-        <!-- Add this in your HTML -->
-        <div class="datetime-container" id="inputForm">
-          <div class="datetime-card">
-            <h2 class="form-title">
-              Start Counting beautiful Moments Together&infin;
-            </h2>
-            <div id="errorMessage" class="error-message"></div>
-            <div class="datetime-inputs">
-              <div class="input-group">
-                <input type="date" id="startDate" required />
-                <label for="startDate" class="input-label">Start Date</label>
-                <span class="input-icon">📅</span>
-              </div>
-              <div class="input-group">
-                <input type="time" id="startTime" required />
-                <label for="startTime" class="input-label">Start Time</label>
-                <span class="input-icon">⏰</span>
-              </div>
-            </div>
-            <button class="submit-btn" onclick="saveDateTime()">
-              <span>Start Counting Love</span>
-              <svg viewBox="0 0 24 24" width="24" height="24">
-                <path
-                  fill="currentColor"
-                  d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <button
-          onclick="resetDateTime()"
-          id="resetButton"
-          style="display: none"
-        >
-          Reset
-        </button>
-        <div class="heart-container">
-          <img
-            src="./assets/heart-of-love.png"
-            alt="Heart Animation"
-            class="heart-gif"
-          />
-          <div id="counter" class="heart-content"></div>
-        </div>
+    <header>
+      <div class="logo-container">
+        <img src="assets/Logo-1.png" alt="Love Counter Logo" class="logo" />
+      </div>
+    </header>
 
-        <!-- Tulip Image -->
-        <div class="tulip-container">
-          <img
-            src="./assets/tulip.png"
-            alt="Tulips"
-            loading="lazy"
-            class="tulip-image"
-          />
+    <main>
+      <div id="inputForm" class="input-card">
+        <h2>When did your love story begin?</h2>
+        <div class="form-group">
+          <label for="startDate">Date:</label>
+          <input type="date" id="startDate" required />
+        </div>
+        <div class="form-group">
+          <label for="startTime">Time (optional):</label>
+          <input type="time" id="startTime" />
+        </div>
+        <div id="errorMessage" class="error-message"></div>
+        <button onclick="saveDateTime()" class="start-button">
+          Start Counting
+        </button>
+      </div>
+
+      <div class="heart-container" style="display: none">
+        <div class="heart-wrapper">
+          <img src="assets/heart-of-love.png" alt="Heart" class="heart-image" />
+          <div id="counter" class="counter-text"></div>
+        </div>
+        <div class="quote-container">
+          <div class="form-group">
+            <label for="customQuote">Add your love quote (optional):</label>
+            <input
+              type="text"
+              id="customQuote"
+              placeholder="Write your own love quote here..."
+              maxlength="100"
+            />
+            <div class="quote-buttons">
+              <button onclick="previewImage()" class="preview-button">
+                Preview Image
+                <svg
+                  fill="#000000"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  id="image"
+                  data-name="Flat Line"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon flat-line"
+                  style="vertical-align: middle; margin-left: 8px"
+                >
+                  <path
+                    id="secondary"
+                    d="M21,5V19a1,1,0,0,1-.29.71L14,13l-3,3L9,14,3.29,19.71A1,1,0,0,1,3,19V5A1,1,0,0,1,4,4H20A1,1,0,0,1,21,5Z"
+                    style="fill: rgb(44, 169, 188); stroke-width: 2"
+                  ></path>
+                  <polyline
+                    id="primary"
+                    points="20.71 19.71 14 13 11 16 9 14 3.29 19.71"
+                    style="
+                      fill: none;
+                      stroke: rgb(0, 0, 0);
+                      stroke-linecap: round;
+                      stroke-linejoin: round;
+                      stroke-width: 2;
+                    "
+                  ></polyline>
+                  <line
+                    id="primary-upstroke"
+                    x1="10.95"
+                    y1="9"
+                    x2="11.05"
+                    y2="9"
+                    style="
+                      fill: none;
+                      stroke: rgb(0, 0, 0);
+                      stroke-linecap: round;
+                      stroke-linejoin: round;
+                      stroke-width: 2.5;
+                    "
+                  ></line>
+                  <rect
+                    id="primary-2"
+                    data-name="primary"
+                    x="3"
+                    y="4"
+                    width="18"
+                    height="16"
+                    rx="1"
+                    style="
+                      fill: none;
+                      stroke: rgb(0, 0, 0);
+                      stroke-linecap: round;
+                      stroke-linejoin: round;
+                      stroke-width: 2;
+                    "
+                  ></rect>
+                </svg>
+              </button>
+              <button onclick="downloadImage()" class="download-button">
+                Download Image
+              </button>
+            </div>
+          </div>
+          <p id="randomQuote" class="love-quote"></p>
+        </div>
+        <div class="button-container">
+          <button onclick="shareCounter()" class="share-button">
+            Share Your Love
+          </button>
+          <button
+            onclick="resetDateTime()"
+            id="resetButton"
+            class="reset-button"
+          >
+            Reset Counter
+          </button>
         </div>
       </div>
-      <!-- Footer -->
-      <footer>
-        &copy;
-        <a href="https://iftikhariscoding.netlify.app/" target="_blank"
-          >SpidyOrg</a
-        >
-        <span style="font-weight: bold">2025</span>
-      </footer>
+    </main>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div id="previewContainer"></div>
+      </div>
     </div>
-    <!-- JavaScript Files -->
+
+    <footer>
+      <p>&copy; 2024 Spidy Org. All rights reserved.</p>
+    </footer>
+
+    <!-- Add html2canvas library -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
