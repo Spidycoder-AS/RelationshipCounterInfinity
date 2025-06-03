@@ -215,7 +215,7 @@ function createFullShareContainer() {
   const isMobile = window.innerWidth <= 768;
   const containerWidth = isMobile ? 300 : 340;
   const containerHeight = isMobile ? 400 : 450; // Increased height
-  const heartWidth = isMobile ? 180 : 240;
+  const heartWidth = isMobile ? 220 : 240;
   const fontSize = isMobile ? "8px" : "14px";
   const quoteFontSize = isMobile ? "16px" : "18px";
 
