@@ -207,6 +207,7 @@ main {
 .quote-container {
   background: white;
   padding: 1.5rem;
+  padding-bottom: 0.1rem;
   border-radius: 15px;
   box-shadow: 0 4px 15px var(--shadow-color);
   margin: 0.5rem 0;
@@ -311,6 +312,36 @@ footer {
   gap: 1rem;
   margin-top: 1rem;
   justify-content: center;
+}
+
+.quote-info-text {
+  font-size: 0.65rem;
+  color: var(--primary-color);
+  margin: 0.75rem auto 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Comic Neue", cursive;
+  font-style: normal;
+  font-weight: 900;
+  gap: 0.3rem;
+  background: rgba(255, 105, 180, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.2rem 0.6rem;
+  border-radius: 15px;
+  max-width: fit-content;
+  box-shadow: 0 0 12px rgba(255, 105, 180, 0.4);
+  user-select: none;
+  text-align: center;
+}
+
+.info-icon {
+  font-size: 0.75rem;
+  color: var(--primary-color);
+  display: inline-block;
+  line-height: 1;
+  user-select: none;
 }
 
 .preview-button,
