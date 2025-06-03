@@ -6,6 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("inputForm").style.display = "none";
     document.getElementById("resetButton").style.display = "block";
     document.querySelector(".heart-container").style.display = "flex";
+    
+    // Display saved names
+    const yourName = localStorage.getItem("yourName");
+    const partnerName = localStorage.getItem("partnerName");
+    if (yourName && partnerName) {
+      document.getElementById("displayYourName").textContent = yourName;
+      document.getElementById("displayPartnerName").textContent = partnerName;
+    }
+    
     intervalId = setInterval(updateCounter, 1000);
   }
   updateCounter();
@@ -14,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
 function saveDateTime() {
   const dateInput = document.getElementById("startDate").value;
   const timeInput = document.getElementById("startTime").value || "00:00";
+  const yourName = document.getElementById("yourName").value.trim();
+  const partnerName = document.getElementById("partnerName").value.trim();
   const errorMessage = document.getElementById("errorMessage");
 
   if (!dateInput) {
@@ -23,13 +34,26 @@ function saveDateTime() {
     return;
   }
 
+  if (!yourName || !partnerName) {
+    errorMessage.innerHTML =
+      '<img src="./assets/love.png" alt="love" style="width:24px;height:24px;vertical-align:middle;margin-right:6px;" /> please enter both names';
+    errorMessage.classList.add("show");
+    return;
+  }
+
   errorMessage.classList.remove("show");
   const startDateTime = `${dateInput}T${timeInput}:00+05:30`;
   localStorage.setItem("relationshipStartDate", startDateTime);
+  localStorage.setItem("yourName", yourName);
+  localStorage.setItem("partnerName", partnerName);
 
   document.getElementById("inputForm").style.display = "none";
   document.getElementById("resetButton").style.display = "block";
   document.querySelector(".heart-container").style.display = "flex";
+
+  // Update displayed names
+  document.getElementById("displayYourName").textContent = yourName;
+  document.getElementById("displayPartnerName").textContent = partnerName;
 
   if (intervalId) clearInterval(intervalId);
   updateCounter();
@@ -178,6 +202,8 @@ function createFullShareContainer() {
   const duration = calculateISTDuration(startDate);
   const customQuote = document.getElementById("customQuote").value.trim();
   const randomQuote = getRandomQuote();
+  const yourName = localStorage.getItem("yourName") || "";
+  const partnerName = localStorage.getItem("partnerName") || "";
 
   // Calculate total years
   const totalYears = Math.floor(duration.months / 12);
@@ -188,6 +214,7 @@ function createFullShareContainer() {
   // Smaller, more centered preview
   const isMobile = window.innerWidth <= 768;
   const containerWidth = isMobile ? 300 : 340;
+  const containerHeight = isMobile ? 400 : 450; // Increased height
   const heartWidth = isMobile ? 180 : 240;
   const fontSize = isMobile ? "8px" : "14px";
   const quoteFontSize = isMobile ? "16px" : "18px";
@@ -201,7 +228,7 @@ function createFullShareContainer() {
   container.style.padding = isMobile ? "12px" : "18px";
   container.style.borderRadius = "20px";
   container.style.width = `${containerWidth}px`;
-  container.style.height = `${containerWidth}px`;
+  container.style.height = `${containerHeight}px`; // Using the new height
   container.style.display = "flex";
   container.style.flexDirection = "column";
   container.style.alignItems = "center";
@@ -261,6 +288,20 @@ function createFullShareContainer() {
 
   // Add the heart container to the main container
   container.appendChild(heartContainer);
+
+  // Add names display
+  const namesDisplay = document.createElement("div");
+  namesDisplay.style.display = "flex";
+  namesDisplay.style.alignItems = "center";
+  namesDisplay.style.justifyContent = "center";
+  namesDisplay.style.gap = "10px";
+  namesDisplay.style.padding = "8px 15px";
+  namesDisplay.innerHTML = `
+    <span style="font-family: 'Dancing Script', cursive; font-size: ${isMobile ? "16px" : "20px"}; font-weight: 700; color: #333;">${yourName}</span>
+    <span style="font-size: ${isMobile ? "18px" : "24px"}; color: #ff4c6a;">❤️</span>
+    <span style="font-family: 'Dancing Script', cursive; font-size: ${isMobile ? "16px" : "20px"}; font-weight: 700; color: #333;">${partnerName}</span>
+  `;
+  container.appendChild(namesDisplay);
 
   // Add the quote (either custom or random)
   const quoteText = document.createElement("div");
